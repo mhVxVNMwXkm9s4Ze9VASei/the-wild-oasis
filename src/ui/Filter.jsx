@@ -49,7 +49,7 @@ function Filter({ filterField, options }) {
 			{options.map((option) => (
 				<FilterButton
 					key={option.value}
-					active={option.value === currentFilter}
+					$active={option.value === currentFilter}
 					disabled={option.value === currentFilter}
 					onClick={() => handleClick(option.value)}
 				>
