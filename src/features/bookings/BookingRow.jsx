@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { format, isToday } from "date-fns";
 
+import Menus from "../../ui/Menus";
 import Tag from "../../ui/Tag";
 import Table from "../../ui/Table";
 
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
+import { HiEye } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 const Cabin = styled.div`
 	font-size: 1.6rem;
@@ -49,6 +52,7 @@ function BookingRow({
 	},
 }) {
 	console.log(booking_id, created_at, num_guests);
+	const navigate = useNavigate();
 	const statusToTagName = {
 		unconfirmed: "blue",
 		"checked-in": "green",
@@ -80,6 +84,18 @@ function BookingRow({
 			<Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
 			<Amount>{formatCurrency(total_price)}</Amount>
+
+			<Menus.Menu>
+				<Menus.Toggle id={booking_id} />
+				<Menus.List id={booking_id}>
+					<Menus.Button
+						icon={<HiEye />}
+						onClick={() => navigate(`/bookings/${booking_id}`)}
+					>
+						See details
+					</Menus.Button>
+				</Menus.List>
+			</Menus.Menu>
 		</Table.Row>
 	);
 }
