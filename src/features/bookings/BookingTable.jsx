@@ -29,7 +29,7 @@ function BookingTable() {
 					data={bookings}
 					render={(booking) => (
 						<BookingRow
-							key={booking.id}
+							key={booking?.id}
 							booking={booking}
 						/>
 					)}

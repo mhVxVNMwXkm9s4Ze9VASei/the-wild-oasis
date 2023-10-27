@@ -47,7 +47,7 @@ function BookingRow({
 		num_guests,
 		total_price,
 		status,
-		guests: { fullName: guest_name, email },
+		guests: { full_name: guest_name, email },
 		cabins: { name: cabin_name },
 	},
 }) {
