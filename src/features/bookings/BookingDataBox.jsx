@@ -76,10 +76,10 @@ const Price = styled.div`
 	border-radius: var(--border-radius-sm);
 	margin-top: 2.4rem;
 
-	background-color: ${({ isPaid }) =>
-		isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
-	color: ${({ isPaid }) =>
-		isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
+	background-color: ${({ $isPaid }) =>
+		$isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
+	color: ${({ $isPaid }) =>
+		$isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
 
 	& p:last-child {
 		text-transform: uppercase;
@@ -177,7 +177,7 @@ function BookingDataBox({ booking }) {
 					{has_breakfast ? "Yes" : "No"}
 				</DataItem>
 
-				<Price isPaid={is_paid}>
+				<Price $isPaid={is_paid}>
 					<DataItem
 						icon={<HiOutlineCurrencyDollar />}
 						label={`Total price`}
