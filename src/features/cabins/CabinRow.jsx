@@ -99,7 +99,7 @@ function CabinRow({ cabin }) {
 							<Modal.Open opens="edit">
 								<Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
 							</Modal.Open>
-							<Modal.Open name="delete">
+							<Modal.Open opens="delete">
 								<Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
 							</Modal.Open>
 						</Menus.List>
@@ -108,7 +108,7 @@ function CabinRow({ cabin }) {
 							<CreateCabinForm cabinToEdit={cabin} />
 						</Modal.Window>
 
-						<Modal.Window opens="delete">
+						<Modal.Window name="delete">
 							<ConfirmDelete
 								disabled={isDeleting}
 								onConfirm={() => deleteCabin(cabinID)}
