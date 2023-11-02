@@ -5,42 +5,43 @@ import Stats from "./Stats";
 import { useCabins } from "../cabins/useCabins";
 import { useRecentBookings } from "./useRecentBookings";
 import { useRecentStays } from "./useRecentStays";
+import SalesChart from "./SalesChart";
 
 const StyledDashboardLayout = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: auto 34rem auto;
-	gap: 2.4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 34rem auto;
+  gap: 2.4rem;
 `;
 
 function DashboardLayout() {
-	const { bookings, isLoading: isLoadingBookings } = useRecentBookings();
-	const { cabins, isLoading: isLoadingCabins } = useCabins();
-	const {
-		confirmedStays,
-		isLoading: isLoadingStays,
-		numDays,
-		stays,
-	} = useRecentStays();
+  const { bookings, isLoading: isLoadingBookings } = useRecentBookings();
+  const { cabins, isLoading: isLoadingCabins } = useCabins();
+  const {
+    confirmedStays,
+    isLoading: isLoadingStays,
+    numDays,
+  } = useRecentStays();
 
-	if (isLoadingBookings || isLoadingCabins || isLoadingStays)
-		return <Spinner />;
+  if (isLoadingBookings || isLoadingCabins || isLoadingStays)
+    return <Spinner />;
 
-	console.log(stays);
-
-	return (
-		<StyledDashboardLayout>
-			<Stats
-				bookings={bookings}
-				cabinCount={cabins.length}
-				confirmedStays={confirmedStays}
-				numDays={numDays}
-			/>
-			<div>Today&apos;s activity</div>
-			<div>Chart stay durations</div>
-			<div>Sales chart</div>
-		</StyledDashboardLayout>
-	);
+  return (
+    <StyledDashboardLayout>
+      <Stats
+        bookings={bookings}
+        cabinCount={cabins.length}
+        confirmedStays={confirmedStays}
+        numDays={numDays}
+      />
+      <div>Today&apos;s activity</div>
+      <div>Chart stay durations</div>
+      <SalesChart
+        bookings={bookings}
+        numDays={numDays}
+      />
+    </StyledDashboardLayout>
+  );
 }
 
 export default DashboardLayout;
