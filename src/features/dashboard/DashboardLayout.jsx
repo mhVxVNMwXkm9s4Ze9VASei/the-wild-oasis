@@ -7,6 +7,7 @@ import { useRecentBookings } from "./useRecentBookings";
 import { useRecentStays } from "./useRecentStays";
 import SalesChart from "./SalesChart";
 import DurationChart from "./DurationChart";
+import TodayActivity from "../check-in-out/TodayActivity";
 
 const StyledDashboardLayout = styled.div`
   display: grid;
@@ -35,7 +36,7 @@ function DashboardLayout() {
         confirmedStays={confirmedStays}
         numDays={numDays}
       />
-      <div>Today&apos;s activity</div>
+      <TodayActivity />
       <DurationChart confirmedStays={confirmedStays} />
       <SalesChart
         bookings={bookings}
