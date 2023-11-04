@@ -7,59 +7,59 @@ import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
 
 function LoginForm() {
-	const [email, setEmail] = useState("nobody@gmail.com");
-	const [password, setPassword] = useState("");
-	const { login, isLoading: isLoggingIn } = useLogin();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, isLoading: isLoggingIn } = useLogin();
 
-	function handleSubmit(event) {
-		event.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
 
-		if (!email || !password) return;
+    if (!email || !password) return;
 
-		login(
-			{ email, password },
-			{
-				onSettled: () => {
-					setEmail("");
-					setPassword("");
-				},
-			}
-		);
-	}
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      }
+    );
+  }
 
-	return (
-		<Form onSubmit={handleSubmit}>
-			<FormRowVertical label="Email address">
-				<Input
-					type="email"
-					id="email"
-					// This makes this form better for password managers
-					autoComplete="username"
-					disabled={isLoggingIn}
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-			</FormRowVertical>
-			<FormRowVertical label="Password">
-				<Input
-					type="password"
-					id="password"
-					autoComplete="current-password"
-					disabled={isLoggingIn}
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-			</FormRowVertical>
-			<FormRowVertical>
-				<Button
-					size="large"
-					disabled={isLoggingIn}
-				>
-					{isLoggingIn ? <SpinnerMini /> : "Log in"}
-				</Button>
-			</FormRowVertical>
-		</Form>
-	);
+  return (
+    <Form onSubmit={handleSubmit}>
+      <FormRowVertical label="Email address">
+        <Input
+          type="email"
+          id="email"
+          // This makes this form better for password managers
+          autoComplete="username"
+          disabled={isLoggingIn}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormRowVertical>
+      <FormRowVertical label="Password">
+        <Input
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          disabled={isLoggingIn}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormRowVertical>
+      <FormRowVertical>
+        <Button
+          size="large"
+          disabled={isLoggingIn}
+        >
+          {isLoggingIn ? <SpinnerMini /> : "Log in"}
+        </Button>
+      </FormRowVertical>
+    </Form>
+  );
 }
 
 export default LoginForm;
